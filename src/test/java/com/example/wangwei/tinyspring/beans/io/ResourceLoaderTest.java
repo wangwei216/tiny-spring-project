@@ -13,10 +13,11 @@ import org.junit.Test;
 public class ResourceLoaderTest {
 
 	@Test
-	public void test() throws IOException {
+	public void test() throws IOException, IllegalAccessException, InstantiationException {
 		ResourceLoader resourceLoader = new ResourceLoader();
 		Resource resource = resourceLoader.getResource("tinyioc.xml");
 		InputStream inputStream = resource.getInputStream();
+		System.out.println("输出inputStream流----->"+inputStream.getClass());
 		Assert.assertNotNull(inputStream);
 	}
 }
