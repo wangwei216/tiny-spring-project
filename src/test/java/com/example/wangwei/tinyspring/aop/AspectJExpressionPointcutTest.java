@@ -4,11 +4,10 @@ import com.example.wangwei.tinyspring.HelloWorldService;
 import com.example.wangwei.tinyspring.HelloWorldServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 
 
 /**
- * @author yihua.huang@dianping.com
+ * @author wangwei
  */
 public class AspectJExpressionPointcutTest {
 
@@ -23,7 +22,7 @@ public class AspectJExpressionPointcutTest {
 
 	@Test
 	public void testMethodInterceptor() throws Exception {
-		String expression = "execution(* com.ysj.*.*(..))";
+		String expression = "execution(* com.example.wangwei.tinyspring.*.*(..))";
 		AspectJExpressionPointcut aspectJExpressionPointcut = new AspectJExpressionPointcut();
 		aspectJExpressionPointcut.setExpression(expression);
 		boolean matches = aspectJExpressionPointcut.getMethodMatcher()

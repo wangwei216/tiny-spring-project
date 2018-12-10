@@ -10,7 +10,7 @@ import com.example.wangwei.tinyspring.beans.BeanDefinition;
 import com.example.wangwei.tinyspring.beans.BeanPostProcessor;
 
 
-/*
+/**
  * BeanFactory 的一种抽象类实现，规范了 IoC 容器的基本结构。
  * 
  * IoC 容器的结构：AbstractBeanFactory 维护一个 beanDefinitionMap 哈希表用于保存类的定义信息（BeanDefinition）。
@@ -18,28 +18,24 @@ import com.example.wangwei.tinyspring.beans.BeanPostProcessor;
  */
 public class AbstractBeanFactory implements BeanFactory{
 
-	/*
+	/**
 	 * bean定义的信息和bean的name保存在线程安全的HashMap中
 	 */
 	private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<String, BeanDefinition>();
 	
-	/*
+	/**
 	 * 保存完成注册的bean的name
 	 */
 	private final List<String> beanDefinitionNames = new ArrayList<String>();
 	
-	/*
+	/**
 	 * 增加bean处理程序：
 	 * 	例如通过AspectJAwareAdvisorAutoProxyCreator#postProcessAfterInitialization()实现AOP的织入
 	 */
 	private List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 	
-	/*
+	/**
 	 * 根据名字获取bean实例(实例化并初始化bean)
-	 * 这里使用到了一个模板模式：
-	 * 1.先去拿到bean
-	 * 2.看是否有没有拿到，没有的话就去装配bean
-	 * 3.然后去初始化bean
 	 */
 	@Override
 	public Object getBean(String name) throws Exception {
@@ -72,11 +68,8 @@ public class AbstractBeanFactory implements BeanFactory{
 		applyPropertyValues(bean, beanDefinition);
 		return bean;
 	}
-
-	//这里是通过拿到BeanDefinition的class文件，然后进行实例化
+	
 	protected Object createBeanInstance(BeanDefinition beanDefinition) throws Exception {
-		System.out.println("哈哈哈哈--------》"+beanDefinition.getBeanClass().toString());
-		System.out.println(beanDefinition.toString());
 		return beanDefinition.getBeanClass().newInstance();
 	}
 	
@@ -84,7 +77,7 @@ public class AbstractBeanFactory implements BeanFactory{
 
 	}
 	
-	/*
+	/** 
 	 * 初始化bean
 	 * 可在此进行AOP的相关操作：例如生成相关代理类，并返回
 	 * @param bean
@@ -105,7 +98,7 @@ public class AbstractBeanFactory implements BeanFactory{
         return bean;
 	}
 	
-	/*
+	/**
 	 * 预处理bean的定义，将bean的名字提前存好,实现Ioc容器中存储单例bean
 	 * @throws Exception
 	 */
@@ -117,7 +110,7 @@ public class AbstractBeanFactory implements BeanFactory{
 		}
 	}
 	
-	/*
+	/**
 	 * 根据类型获取所有bean实例
 	 * @param type
 	 * @return
@@ -126,7 +119,7 @@ public class AbstractBeanFactory implements BeanFactory{
 	public List getBeansForType(Class type) throws Exception {
 		List beans = new ArrayList<Object>();
 		for (String beanDefinitionName : beanDefinitionNames) {
-			/*
+			/**
 			 * boolean isAssignableFrom(Class<?> cls)  
 			 * 判定此 Class 对象所表示的类或接口与指定的 Class 参数所表示的类或接口是否相同，或是否是其超类或超接口。
 			 */

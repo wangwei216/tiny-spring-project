@@ -4,7 +4,8 @@ import org.aopalliance.intercept.MethodInterceptor;
 
 /*
  * AdvisedSupport封装了TargetSource, MethodInterceptor和MethodMatcher
- *
+ *  在spring源码中：
+ *  AdvisedSupport extends ProxyConfig implements Advised
  */
 public class AdvisedSupport {
 

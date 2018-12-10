@@ -41,6 +41,7 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory{
 					先获取dog对象的setId方法，然后通过反射调用该方法将value设置进去
 					getDeclaredMethod方法的第一个参数是方法名，第二个参数是该方法的参数列表
 				 */
+				System.out.println("在AutowireCapableBeanFactory类中的applyPropertyValues方法中--->"+bean.toString());
 				Method declaredMethod = bean.getClass().getDeclaredMethod(
 						// 拼接方法名
 						"set" + propertyValue.getName().substring(0, 1).toUpperCase()

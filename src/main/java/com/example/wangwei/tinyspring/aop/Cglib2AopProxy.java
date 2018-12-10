@@ -1,16 +1,13 @@
 package com.example.wangwei.tinyspring.aop;
 
-import org.aopalliance.intercept.MethodInterceptor;
 import org.springframework.cglib.proxy.Callback;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodProxy;
 
-
 import java.lang.reflect.Method;
 
 
-
-/*
+/**
  *  cglib是针对类来实现代理的，他的原理是对指定的目标类生成一个子类，并覆盖其中方法实现增强，但
  *  因为采用的是继承， 所以不能对final修饰的类进行代理。 
  *
@@ -26,18 +23,19 @@ public class Cglib2AopProxy extends AbstractAopProxy {
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(advised.getTargetSource().getTargetClass());
 		enhancer.setInterfaces(advised.getTargetSource().getInterfaces());
-		/* Enhancer.java中setCallback方法源码
+		/** Enhancer.java中setCallback方法源码
 		 *	public void setCallback(final Callback callback) {
 		 *       setCallbacks(new Callback[]{ callback });
 		 *  }
 	    */
 	    // 设置回调方法
-		enhancer.setCallback((Callback) new DynamicAdvisedInterceptor(advised));
+		enhancer.setCallback(new DynamicAdvisedInterceptor(advised));
 		Object enhanced = enhancer.create();
 		return enhanced;
 	}
 
-	/* 注意该类实现的是net.sf.cglib.proxy.MethodInterceptor，不是aopalliance的MethodInterceptor.
+
+	/** 注意该类实现的是net.sf.cglib.proxy.MethodInterceptor，不是aopalliance的MethodInterceptor.
 	 *	net.sf.cglib.proxy.MethodInterceptor.java:
 
  	 *	public interface MethodInterceptor extends Callback{
@@ -50,13 +48,12 @@ public class Cglib2AopProxy extends AbstractAopProxy {
 
  	 *	}
 	 *	
-	 */
-	private static class DynamicAdvisedInterceptor  {
+*/	private static class DynamicAdvisedInterceptor implements MethodInterceptor {
 
 		private AdvisedSupport advised;
 
 		// 用户写的的方法拦截器
-		private MethodInterceptor delegateMethodInterceptor;
+		private org.aopalliance.intercept.MethodInterceptor delegateMethodInterceptor;
 
 		private DynamicAdvisedInterceptor(AdvisedSupport advised) {
 			this.advised = advised;
@@ -64,7 +61,7 @@ public class Cglib2AopProxy extends AbstractAopProxy {
 		}
 
 		// 拦截代理对象的所有方法
-//		@Override
+		@Override
 		public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 			// 如果advised.getMethodMatcher()为空(编程式的使用aop，例如：Cglib2AopProxyTest.java)，拦截该类的所有方法
 			// 如果有方法匹配器(声明式的在xml文件里配置了AOP)并且匹配方法成功就拦截指定的方法
@@ -77,7 +74,6 @@ public class Cglib2AopProxy extends AbstractAopProxy {
 			// 有AspectJ表达式，但没有匹配该方法，返回通过methodProxy调用原始对象的该方法
 			return new CglibMethodInvocation(advised.getTargetSource().getTarget(), method, args, proxy).proceed();
 		}
-
 	}
 
 	private static class CglibMethodInvocation extends ReflectiveMethodInvocation {

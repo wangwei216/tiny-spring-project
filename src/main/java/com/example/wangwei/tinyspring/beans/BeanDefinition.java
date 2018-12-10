@@ -27,8 +27,17 @@ public class BeanDefinition {
 	 * 每个属性都是键值对 String - Object
 	 */
 	private PropertyValues propertyValues = new PropertyValues();
-	
+
+	//定义的BeanDefinition的无参构造方法
 	public BeanDefinition() { }
+
+	public BeanDefinition(Object bean,Class beanClass,String beanClassName){
+		super();
+		this.bean=bean;
+		this.beanClass=beanClass;
+		this.beanClassName=beanClassName;
+	}
+
 
 	
 	public Object getBean() {
@@ -40,6 +49,7 @@ public class BeanDefinition {
 	}
 
 	public Class getBeanClass() {
+		System.out.println("在BeanDefinition类中getBeanClass---->"+beanClass.toString());
 		return beanClass;
 	}
 

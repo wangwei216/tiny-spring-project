@@ -1,10 +1,11 @@
 package com.example.wangwei.tinyspring.aop;
 
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author wangwei
  */
 public class TimerInterceptor implements MethodInterceptor {
 

@@ -15,6 +15,8 @@ import org.junit.Test;
  */
 public class BeanFactoryTest {
 
+//	private AbstractBeanFactory beanFactory;
+
 	@Test
 	public void testLazy() throws Exception {
 		// 1.读取配置

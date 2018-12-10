@@ -6,7 +6,7 @@ import java.lang.reflect.Proxy;
 
 import org.aopalliance.intercept.MethodInterceptor;
 
-/**
+/*
  * 一个基于JDK的动态代理
  * 	只能针对实现了接口的类生成代理。于是我们就有了基本的织入功能。
  * 注意：实现了InvocationHandler接口,可以通过重写invoke方法进行控制访问
@@ -18,7 +18,7 @@ public class JdkDynamicAopProxy extends AbstractAopProxy implements InvocationHa
 		super(advised);
 	}
 
-	/**
+	/*
 	 * 获取代理对象
 	 */
 	@Override
@@ -28,7 +28,7 @@ public class JdkDynamicAopProxy extends AbstractAopProxy implements InvocationHa
 										this);
 	}
 
-	/**
+	/*
 	 * 控制访问
 	 */
 	@Override

@@ -5,22 +5,10 @@ import java.util.List;
 import com.example.wangwei.tinyspring.beans.BeanPostProcessor;
 import com.example.wangwei.tinyspring.beans.factory.AbstractBeanFactory;
 
-
-/*
- * ApplicationContext 的抽象实现，其实这个AbstractApplicationContext类核心的方法就是onFresh()方法
+/**
+ * ApplicationContext 的抽象实现
  *
  */
-
-//                  this.prepareBeanFactory(beanFactory);
-//					this.postProcessBeanFactory(beanFactory);
-//					this.invokeBeanFactoryPostProcessors(beanFactory);
-//					this.registerBeanPostProcessors(beanFactory);
-//					this.initMessageSource();
-//					this.initApplicationEventMulticaster();
-//					this.onRefresh();
-//					this.registerListeners();
-//					this.finishBeanFactoryInitialization(beanFactory);
-//					this.finishRefresh();
 public abstract class AbstractApplicationContext implements ApplicationContext {
 
 	protected AbstractBeanFactory beanFactory;
@@ -29,7 +17,7 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
 		this.beanFactory = beanFactory;
 	}
 	
-	/*
+	/**
 	 * 用于实现 BeanFactory 的刷新，也就是告诉 BeanFactory 该使用哪个资源（Resource）加载bean的定义
 	 * （BeanDefinition）,并实例化，初始化bean
 	 * @throws Exception
@@ -47,16 +35,15 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
 		onRefresh();
 	}
 	
-	/*
+	/**
 	 * 由子类决定从哪种形式的Resource中加载出bean的定义，并保存到beanFactory中
 	 * @param beanFactory
 	 * @throws Exception
 	 */
 	protected abstract void loadBeanDefinitions(AbstractBeanFactory beanFactory) throws Exception;
 	
-	/*
+	/**
 	 * 可用于实例化AspectJAwareAdvisorAutoProxyCreator
-	 * 这个是要在Bean初始化的时候就会先调用这个方法去拿到了动态代理类的bean
 	 * @param beanFactory
 	 * @throws Exception
 	 */
