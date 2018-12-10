@@ -7,9 +7,20 @@ import com.example.wangwei.tinyspring.beans.factory.AbstractBeanFactory;
 
 
 /*
- * ApplicationContext 的抽象实现
+ * ApplicationContext 的抽象实现，其实这个AbstractApplicationContext类核心的方法就是onFresh()方法
  *
  */
+
+//                  this.prepareBeanFactory(beanFactory);
+//					this.postProcessBeanFactory(beanFactory);
+//					this.invokeBeanFactoryPostProcessors(beanFactory);
+//					this.registerBeanPostProcessors(beanFactory);
+//					this.initMessageSource();
+//					this.initApplicationEventMulticaster();
+//					this.onRefresh();
+//					this.registerListeners();
+//					this.finishBeanFactoryInitialization(beanFactory);
+//					this.finishRefresh();
 public abstract class AbstractApplicationContext implements ApplicationContext {
 
 	protected AbstractBeanFactory beanFactory;
@@ -45,6 +56,7 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
 	
 	/*
 	 * 可用于实例化AspectJAwareAdvisorAutoProxyCreator
+	 * 这个是要在Bean初始化的时候就会先调用这个方法去拿到了动态代理类的bean
 	 * @param beanFactory
 	 * @throws Exception
 	 */
