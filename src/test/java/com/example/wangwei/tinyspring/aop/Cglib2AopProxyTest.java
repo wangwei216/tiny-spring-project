@@ -7,7 +7,7 @@ import com.example.wangwei.tinyspring.context.ClassPathXmlApplicationContext;
 import org.junit.Test;
 
 
-/**
+/*
  * @author wangwei
  */
 public class Cglib2AopProxyTest {

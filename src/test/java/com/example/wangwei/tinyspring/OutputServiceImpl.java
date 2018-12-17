@@ -1,7 +1,7 @@
 package com.example.wangwei.tinyspring;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author wangwei
  */
 public class OutputServiceImpl implements OutputService {
 

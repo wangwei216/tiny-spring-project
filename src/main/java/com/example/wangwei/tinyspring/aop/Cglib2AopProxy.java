@@ -7,7 +7,7 @@ import org.springframework.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 
 
-/**
+/*
  *  cglib是针对类来实现代理的，他的原理是对指定的目标类生成一个子类，并覆盖其中方法实现增强，但
  *  因为采用的是继承， 所以不能对final修饰的类进行代理。 
  *
@@ -23,7 +23,7 @@ public class Cglib2AopProxy extends AbstractAopProxy {
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(advised.getTargetSource().getTargetClass());
 		enhancer.setInterfaces(advised.getTargetSource().getInterfaces());
-		/** Enhancer.java中setCallback方法源码
+		/* Enhancer.java中setCallback方法源码
 		 *	public void setCallback(final Callback callback) {
 		 *       setCallbacks(new Callback[]{ callback });
 		 *  }
@@ -35,7 +35,7 @@ public class Cglib2AopProxy extends AbstractAopProxy {
 	}
 
 
-	/** 注意该类实现的是net.sf.cglib.proxy.MethodInterceptor，不是aopalliance的MethodInterceptor.
+	/* 注意该类实现的是net.sf.cglib.proxy.MethodInterceptor，不是aopalliance的MethodInterceptor.
 	 *	net.sf.cglib.proxy.MethodInterceptor.java:
 
  	 *	public interface MethodInterceptor extends Callback{
@@ -48,7 +48,8 @@ public class Cglib2AopProxy extends AbstractAopProxy {
 
  	 *	}
 	 *	
-*/	private static class DynamicAdvisedInterceptor implements MethodInterceptor {
+	 */
+	private static class DynamicAdvisedInterceptor implements MethodInterceptor {
 
 		private AdvisedSupport advised;
 

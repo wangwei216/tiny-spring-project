@@ -1,7 +1,7 @@
 package com.example.wangwei.tinyspring;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author wangwei
  */
 public interface OutputService {
 	void output(String text);
