@@ -84,6 +84,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		String name = ele.getAttribute("id");
 		// 获取bean标签的class属性作为bean的className
 		String className = ele.getAttribute("class");
+		// 获取bean标签的scope作用域
+		String scope = ele.getAttribute("scope");
+		System.out.println(className+"-----》类的作用域为：------------------------>>>>>"+scope);
 
 		//这个beanDefinition包含了一些bean的名字和bean的class类型、bean的属性名和属性值
 		BeanDefinition beanDefinition = new BeanDefinition();
@@ -91,6 +94,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		processProperty(ele, beanDefinition);
 		// 设置className的同时，也在内部设置了Class
 		beanDefinition.setBeanClassName(className);
+		//把bean的作用域也给加入到beanDefinition中去
+		beanDefinition.setBeanScope(scope);
 		// 注册类定义
 		getRegistry().put(name, beanDefinition);
 	}

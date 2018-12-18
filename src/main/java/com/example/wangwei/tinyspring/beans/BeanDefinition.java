@@ -23,6 +23,11 @@ public class BeanDefinition {
 	private String beanClassName;
 
 	/*
+	* 	bean的作用域
+	* */
+	private String beanScope;
+
+	/*
 	 * bean的属性集合
 	 * 每个属性都是键值对 String - Object
 	 */
@@ -31,11 +36,12 @@ public class BeanDefinition {
 	//定义的BeanDefinition的无参构造方法
 	public BeanDefinition() { }
 
-	public BeanDefinition(Object bean,Class beanClass,String beanClassName){
+	public BeanDefinition(Object bean,Class beanClass,String beanClassName,String beanScope){
 		super();
 		this.bean=bean;
 		this.beanClass=beanClass;
 		this.beanClassName=beanClassName;
+		this.beanScope=beanScope;
 	}
 
 
@@ -68,6 +74,14 @@ public class BeanDefinition {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String getBeanScope() {
+		return beanScope;
+	}
+
+	public void setBeanScope(String beanScope) {
+		this.beanScope = beanScope;
 	}
 
 	public PropertyValues getPropertyValues() {

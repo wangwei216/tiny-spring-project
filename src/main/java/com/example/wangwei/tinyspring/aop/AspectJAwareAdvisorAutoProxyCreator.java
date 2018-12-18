@@ -7,7 +7,7 @@ import com.example.wangwei.tinyspring.beans.factory.AbstractBeanFactory;
 import com.example.wangwei.tinyspring.beans.factory.BeanFactory;
 import org.aopalliance.intercept.MethodInterceptor;
 
-/**
+/*
  * 实现了BeanFactoryAware接口：这个接口提供了对 BeanFactory 的感知，这样，尽管它是容器中的一个 Bean，却
  * 可以获取容器 的引用，进而获取容器中所有的切点对象，决定对哪些对象的哪些方法进行代理。解决了 为哪些对象
  * 提供 AOP 的植入 的问题。
@@ -22,7 +22,7 @@ public class AspectJAwareAdvisorAutoProxyCreator implements BeanPostProcessor, B
 		return bean;
 	}
 
-	/**
+	/*
 	 * 可以取看看AbstractBeanFactory的getBean()的实现
 	 * bean实例化后要进行初始化操作，会经过这个方法满足条件则生成相关的代理类并返回
 	 */

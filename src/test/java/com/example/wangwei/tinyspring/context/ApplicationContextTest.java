@@ -11,6 +11,7 @@ public class ApplicationContextTest {
 	
 	@Test
 	public void test() throws Exception {
+		//第一大步：需要
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("tinyioc.xml");
 		System.out.println("----------------->"+applicationContext.getClass().toString());
 //		 OutputService outputService = (OutputService) applicationContext.getBean("outputService");

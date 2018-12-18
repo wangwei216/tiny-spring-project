@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-/**
- * @author yihua.huang@dianping.com
+/*
+ * @author wangwei
  */
 public class ResourceLoaderTest {
 

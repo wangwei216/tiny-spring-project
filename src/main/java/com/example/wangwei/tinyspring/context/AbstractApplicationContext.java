@@ -13,7 +13,7 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
 
 	protected AbstractBeanFactory beanFactory;
 	
-	public AbstractApplicationContext(AbstractBeanFactory beanFactory) {
+	public  AbstractApplicationContext(AbstractBeanFactory beanFactory) {
 		this.beanFactory = beanFactory;
 	}
 	

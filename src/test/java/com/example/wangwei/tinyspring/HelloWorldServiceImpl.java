@@ -11,7 +11,7 @@ public class HelloWorldServiceImpl implements HelloWorldService {
 
 	@Override
 	public void helloWorld() {
-		outputService.output("我是HelloWorldServiceImpl类中的helloWorld方法---->"+text);
+		outputService.output("我是<HelloWorldServiceImpl>类中的helloWorld方法---->"+text);
 	}
 
 	public void setText(String text) {

@@ -11,11 +11,11 @@ import org.junit.Test;
 
 
 /*
- * @author yihua.huang@dianping.com
+ * @author wangwei
  */
 public class BeanFactoryTest {
 
-//	private AbstractBeanFactory beanFactory;
+	private AbstractBeanFactory beanFactory;
 
 	@Test
 	public void testLazy() throws Exception {
@@ -25,11 +25,13 @@ public class BeanFactoryTest {
 
 		// 2.初始化BeanFactory并注册bean
 		AbstractBeanFactory beanFactory = new AutowireCapableBeanFactory();
+		//因为容量比较大，所以这里使用到了一Map。Entry来进行对这个Map集合进行遍历
 		for (Map.Entry<String, BeanDefinition> beanDefinitionEntry : xmlBeanDefinitionReader.getRegistry().entrySet()) {
+		// 3. 然后把拿到的所有的Map集合中的bean的Name和BeanDefinition的都注册到AbstractBeanFactory工厂中
 			beanFactory.registerBeanDefinition(beanDefinitionEntry.getKey(), beanDefinitionEntry.getValue());
 		}
 
-		// 3.获取bean
+		// 4.获取bean
 		HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
 		helloWorldService.helloWorld();
 	}

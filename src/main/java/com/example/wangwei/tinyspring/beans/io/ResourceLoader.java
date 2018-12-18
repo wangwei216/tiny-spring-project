@@ -8,7 +8,7 @@ import java.net.URL;
  */
 public class ResourceLoader {
 	
-	/**
+	/*
 	 * 获取一个 Resouce 对象
 	 * @param location
 	 * @return
