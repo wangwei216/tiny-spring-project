@@ -43,6 +43,7 @@ public class JdkDynamicAopProxyTest {
 		// 补：由于用户未设置MethodMatcher，所以通过代理还是调用的原方法(JdkDynamicAopProxy中的invoke方法最后
 		// 返回method.invoke(...)而不是methodInterceptor.invoke(...) )
 		// 第四大步： 创建代理(Proxy)
+													//这个advisedSupport表示一个真实的代理对象
 		JdkDynamicAopProxy jdkDynamicAopProxy = new JdkDynamicAopProxy(advisedSupport);
 		System.out.println("jdkDynamicAopProxy的地址为——————>"+jdkDynamicAopProxy.getProxy().toString());
 		HelloWorldService helloWorldServiceProxy = (HelloWorldService) jdkDynamicAopProxy.getProxy();

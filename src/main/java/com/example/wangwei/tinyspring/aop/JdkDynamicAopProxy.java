@@ -23,6 +23,7 @@ public class JdkDynamicAopProxy extends AbstractAopProxy implements InvocationHa
 	 */
 	@Override
 	public Object getProxy() {
+		System.out.println("在【JdkDynamicAopProxy】类中调用了getProxy方法------->"+"【其实是使用了Proxy.newProxyInstance()】");
 		return Proxy.newProxyInstance(getClass().getClassLoader(), 
 										advised.getTargetSource().getInterfaces(),
 										this);

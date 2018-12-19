@@ -39,6 +39,7 @@ public class AbstractBeanFactory implements BeanFactory{
 	 */
 	@Override
 	public Object getBean(String name) throws Exception {
+		int count=0;
 		// 获取该bean的定义
 		BeanDefinition beanDefinition = beanDefinitionMap.get(name);
 		// 如果没有这个bean的定义就抛异常
@@ -56,6 +57,16 @@ public class AbstractBeanFactory implements BeanFactory{
             beanDefinition.setBean(bean);
 		}if (beanDefinition.getBeanScope().equals("prototype")){
 			System.out.println("这里说明这个类--------->"+beanDefinition.getBeanClassName()+"是——————————>"+beanDefinition.getBeanScope()+"类型的");
+		}else {
+			System.out.println("说明到这里之后，bean的作用域既不是单例的也不是prototype的类型的,然后开始执行享元模式-------->");
+			Object beanSession = beanDefinition.getBean();
+			count=count+1;
+			if (count==1){
+				return beanSession;
+			}else {
+				return bean;
+			}
+
 		}
 		return bean;
 	}
